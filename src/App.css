@@ -1,1 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap");
+
+.navlink {
+  @apply text-[#4d4d4d] first:mr-5;
+}
+
+.about-img {
+  height: clamp(24rem, 29.5082vw + 9.83607rem, 37.5rem);
+}
