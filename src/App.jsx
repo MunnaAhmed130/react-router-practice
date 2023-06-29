@@ -1,31 +1,36 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Footer from "./components/Footer";
 
-const Greeting = () => {
-  return <h1>Hello to React router</h1>;
-};
+// const Greeting = () => {
+//   return <h1>Hello to React router</h1>;
+// };
 
-const About = () => {
-  return <h1>Welcome to about page</h1>;
-};
+// const About = () => {
+//   return <h1>Welcome to about page</h1>;
+// };
 
-const Nav = () => {
-  return (
-    <>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-    </>
-  );
-};
+// const Nav = () => {
+//   return (
+//     <nav>
+//       <Link to="/">Home</Link>
+//       <Link to="/about">About</Link>
+//     </nav>
+//   );
+// };
 
 function App() {
   return (
     <BrowserRouter>
-      <Nav />
+      <Header />
       <Routes>
-        <Route path="/" element={<Greeting />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
