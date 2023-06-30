@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <section className="bg-mountain bg-no-repeat bg-center bg-cover ">
+    <section className="bg-mountain bg-no-repeat bg-center bg-cover">
       <div className="max-w-7xl mx-auto py-40 px-16 flex flex-col gap-10">
         <h3 className="font-extrabold text-4xl sm:text-7xl text-white">
           You got the travel plans, we got the travel vans.

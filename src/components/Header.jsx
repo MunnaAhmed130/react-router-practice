@@ -3,8 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 const Header = () => {
   const navlist = [
     {
-      title: "Home",
-      path: "/",
+      title: "About",
+      path: "/about",
     },
     {
       title: "Vans",

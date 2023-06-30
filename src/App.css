@@ -7,3 +7,7 @@
 .about-img {
   height: clamp(24rem, 29.5082vw + 9.83607rem, 37.5rem);
 }
+
+.about-section p {
+  font-weight: 500;
+}

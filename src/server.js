@@ -3,7 +3,7 @@ import { Model, createServer } from "miragejs";
 createServer({
   // dynamic model
   models: {
-    van: Model,
+    vans: Model,
   },
 
   // seed the database with initial data
@@ -74,7 +74,7 @@ createServer({
   //   route handlers
   routes() {
     this.namespace = "api";
-
+    this.logging = false;
     // this.urlPrefix = "http://localhost:3000";
 
     // dynamic route handlers

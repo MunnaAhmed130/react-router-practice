@@ -16,6 +16,6 @@ module.exports = {
       { vars: "all", args: "after-used", ignoreRestSiblings: false },
     ],
     "react/prop-types": [0],
-    "react/no-unescaped-entities": [off, { forbid: [">", "}"] }],
+    "react/no-unescaped-entities": ["warn", { forbid: [""] }],
   },
 };
