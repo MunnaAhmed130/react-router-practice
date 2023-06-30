@@ -3,7 +3,7 @@ const About = () => {
     <section>
       <img
         src="https://i.ibb.co/gmcnDx8/about.png"
-        className="about-img  w-full object-cover object-center"
+        className="about-img w-full object-cover object-center"
         alt="man-on-a-van"
       />
       <div className="max-w-7xl mx-auto py-10 px-16 flex flex-col gap-5">

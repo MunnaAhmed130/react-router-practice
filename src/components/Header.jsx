@@ -7,8 +7,8 @@ const Header = () => {
       path: "/",
     },
     {
-      title: "About",
-      path: "/about",
+      title: "Vans",
+      path: "/vans",
     },
   ];
 
