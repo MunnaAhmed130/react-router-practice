@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Vans = () => {
   const [vans, setVans] = useState([]);
@@ -36,9 +37,9 @@ const Vans = () => {
 };
 
 const Van = ({ van }) => {
-  const { name, imageUrl, price, type } = van;
+  const { id, name, imageUrl, price, type } = van;
   return (
-    <div>
+    <Link to={`/vans/${id}`}>
       <img
         src={imageUrl}
         className="rounded-md lg:h-96 h-80 w-full object-cover object-left-bottom"
@@ -60,7 +61,7 @@ const Van = ({ van }) => {
       >
         {type}
       </button>
-    </div>
+    </Link>
   );
 };
 
