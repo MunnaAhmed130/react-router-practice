@@ -12,7 +12,7 @@ const Vans = () => {
 
   const filterbtn = ["simple", "luxury", "rugged"];
 
-  console.log(vans);
+  // console.log(vans);
   return (
     <section className="max-w-7xl mx-auto py-16 px-16">
       <h2 className="text-4xl font-bold">Explore out van options</h2>
@@ -40,6 +40,7 @@ const Van = ({ van }) => {
   const { id, name, imageUrl, price, type } = van;
   return (
     <Link to={`/vans/${id}`}>
+      {/* <Link to={`/vans/${id}`} state={{ fromVan: true }}> */}
       <img
         src={imageUrl}
         className="rounded-md lg:h-96 h-80 w-full object-cover object-left-bottom"
