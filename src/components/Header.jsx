@@ -29,8 +29,8 @@ const Header = () => {
               to={nav.path}
               className={({ isActive }) =>
                 isActive
-                  ? "underline underline-offset-4 decoration-black decoration-2 font-semibold text-[#161616] last:mr-0 mr-10"
-                  : "text-[#4d4d4d] last:mr-0 mr-10 font-semibold"
+                  ? "underline underline-offset-4 decoration-black decoration-2 font-bold text-[#161616] last:mr-0 mr-10"
+                  : "text-[#4d4d4d] last:mr-0 mr-10 font-bold"
               }
             >
               {nav.title}
