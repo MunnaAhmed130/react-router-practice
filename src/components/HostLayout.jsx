@@ -2,13 +2,17 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const HostLayout = () => {
   const hostNavlist = [
-    {
-      title: "Dashboard",
-      path: "/host",
-    },
+    // {
+    //   title: "Dashboard",
+    //   path: "/host",
+    // },
     {
       title: "Income",
       path: "/host/income",
+    },
+    {
+      title: "Vans",
+      path: "/host/vans",
     },
     {
       title: "Reviews",
@@ -26,14 +30,24 @@ const HostLayout = () => {
 
   return (
     <div className="max-w-7xl mx-auto py-8 px-16">
-      <nav className="host-nav flex justify-between max-w-xl">
-        {/* <Link to="/host">Dashbaord</Link>
+      <nav className="mb-10 flex justify-between max-w-xl">
+        {/*
+         <Link to="/host">Dashbaord</Link>
         <Link to="/host/income">Income</Link>
-        <Link to="/host/reviews">Reviews</Link> */}
+        <Link to="/host/reviews">Reviews</Link> 
+        */}
+
+        <NavLink
+          end
+          to="/host"
+          style={({ isActive }) => (isActive ? hostLayoutStyle : null)}
+        >
+          Dashboard
+        </NavLink>
+
         {hostNavlist.map((nav) => (
           <NavLink
             key={nav.path}
-            end
             to={nav.path}
             // className={({ isActive }) =>
             //   isActive
