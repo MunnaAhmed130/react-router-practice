@@ -6,9 +6,10 @@ const Home = () => {
 
   // let [urlSearchParams] = useSearchParams();
   // console.log(urlSearchParams);
+
   return (
-    <section className="bg-mountain bg-no-repeat bg-center bg-cover">
-      <div className="max-w-7xl mx-auto py-40 px-16 flex flex-col gap-10">
+    <section className="bg-mountain bg-no-repeat bg-center bg-cover px-16">
+      <div className="max-w-7xl mx-auto min-h-[calc(100vh_-_192px)]  flex flex-col justify-center py-32 gap-10">
         <h3 className="font-extrabold text-4xl sm:text-7xl text-white">
           You got the travel plans, we got the travel vans.
         </h3>

@@ -17,12 +17,12 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-[#FFF7ED]">
-      <div className="flex justify-between max-w-7xl mx-auto py-8 px-16">
+    <header className="h-24 px-16">
+      <div className="flex justify-between max-w-7xl mx-auto h-full items-center ">
         <Link to="/" className="font-black text-2xl text-black">
           #VANLIFE
         </Link>
-        <nav>
+        <nav className="flex items-center">
           {navlist.map((nav) => (
             <NavLink
               key={nav.path}
