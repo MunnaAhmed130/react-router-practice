@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const HostVans = () => {
   const [vans, setVans] = useState([]);
@@ -10,7 +11,7 @@ const HostVans = () => {
   }, []);
   return (
     <section>
-      <h2>Your listed vans</h2>
+      <h2 className="text-3xl font-bold py-10">Your listed vans</h2>
       <div>
         {vans.map((van) => (
           <Van van={van} key={van.id} />
@@ -21,13 +22,18 @@ const HostVans = () => {
 };
 
 const Van = ({ van }) => {
-  const { name, price, imageUrl } = van;
+  const { id, name, price, imageUrl } = van;
+
   return (
-    <div>
-      <img src={imageUrl} alt="" />
-      <h3>{name}</h3>
-      <p>{price}</p>
-    </div>
+    <Link to={`/host/vans/${id}`}>
+      <div className="bg-white rounded p-5 mb-5 flex gap-5">
+        <img src={imageUrl} className="w-20 rounded" alt="" />
+        <div className=" flex flex-col justify-center">
+          <h3 className="text-xl ">{name}</h3>
+          <p>${price}/day</p>
+        </div>
+      </div>
+    </Link>
   );
 };
 

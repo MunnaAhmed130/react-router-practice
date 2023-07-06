@@ -14,23 +14,27 @@ const Vans = () => {
 
   // console.log(vans);
   return (
-    <section className="max-w-7xl mx-auto py-16 px-16">
-      <h2 className="text-4xl font-bold">Explore out van options</h2>
-      <div className="flex  gap-5 py-5 text-[#4d4d4d]">
-        {filterbtn.map((btn) => (
-          <button
-            key={btn}
-            className="bg-[#ffead0] capitalize rounded px-7 py-2"
-          >
-            {btn}
+    <section className=" py-16 px-16">
+      <div className="max-w-7xl mx-auto ">
+        <h2 className="text-4xl font-bold">Explore out van options</h2>
+        <div className="flex  gap-5 py-5 text-[#4d4d4d]">
+          {filterbtn.map((btn) => (
+            <button
+              key={btn}
+              className="bg-[#ffead0] capitalize rounded px-7 py-2"
+            >
+              {btn}
+            </button>
+          ))}
+          <button className="underline underline-offset-4">
+            Clear filters
           </button>
-        ))}
-        <button className="underline underline-offset-4">Clear filters</button>
-      </div>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10 py-10">
-        {vans.map((van) => (
-          <Van key={van.name} van={van} />
-        ))}
+        </div>
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10 py-10">
+          {vans.map((van) => (
+            <Van key={van.name} van={van} />
+          ))}
+        </div>
       </div>
     </section>
   );

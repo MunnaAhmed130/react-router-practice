@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 
 const VanDetail = () => {
@@ -19,10 +19,13 @@ const VanDetail = () => {
   //   console.log(van);
   return (
     <section className="max-w-7xl mx-auto py-16 px-16">
-      <button className="underline underline-offset-[3px] flex items-center font-medium text-[#201f1d]">
+      <Link
+        to="/vans"
+        className="underline underline-offset-[3px] flex items-center font-medium text-[#201f1d]"
+      >
         <BiArrowBack className="inline-block mr-2 text-[#858585]" />
         Back to all vans
-      </button>
+      </Link>
       {van ? (
         <div>
           <img src={imageUrl} className="py-16 rounded" alt="" />

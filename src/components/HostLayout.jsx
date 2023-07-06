@@ -29,38 +29,40 @@ const HostLayout = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-16">
-      <nav className="mb-10 flex justify-between max-w-xl">
-        {/*
+    <div className="py-8 px-16">
+      <div className="max-w-7xl mx-auto ">
+        <nav className="mb-10 flex justify-between max-w-xl">
+          {/*
          <Link to="/host">Dashbaord</Link>
-        <Link to="/host/income">Income</Link>
+         <Link to="/host/income">Income</Link>
         <Link to="/host/reviews">Reviews</Link> 
-        */}
+      */}
 
-        <NavLink
-          end
-          to="/host"
-          style={({ isActive }) => (isActive ? hostLayoutStyle : null)}
-        >
-          Dashboard
-        </NavLink>
-
-        {hostNavlist.map((nav) => (
           <NavLink
-            key={nav.path}
-            to={nav.path}
-            // className={({ isActive }) =>
-            //   isActive
-            //     ? "underline underline-offset-4 decoration-black decoration-2 font-semibold text-[#161616]"
-            //     : "text-[#4d4d4d] font-medium"
-            // }
+            end
+            to="/host"
             style={({ isActive }) => (isActive ? hostLayoutStyle : null)}
           >
-            {nav.title}
+            Dashboard
           </NavLink>
-        ))}
-      </nav>
-      <Outlet />
+
+          {hostNavlist.map((nav) => (
+            <NavLink
+              key={nav.path}
+              to={nav.path}
+              // className={({ isActive }) =>
+              //   isActive
+              //     ? "underline underline-offset-4 decoration-black decoration-2 font-semibold text-[#161616]"
+              //     : "text-[#4d4d4d] font-medium"
+              // }
+              style={({ isActive }) => (isActive ? hostLayoutStyle : null)}
+            >
+              {nav.title}
+            </NavLink>
+          ))}
+        </nav>
+        <Outlet />
+      </div>
     </div>
   );
 };
