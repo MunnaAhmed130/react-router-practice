@@ -4,15 +4,15 @@ const Header = () => {
   const navlist = [
     {
       title: "Host",
-      path: "/host",
+      path: "host",
     },
     {
       title: "About",
-      path: "/about",
+      path: "about",
     },
     {
       title: "Vans",
-      path: "/vans",
+      path: "vans",
     },
   ];
 

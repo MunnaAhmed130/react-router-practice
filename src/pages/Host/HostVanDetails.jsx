@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
+import TypeButton from "../../components/TypeButton";
 
 const HostVanDetails = () => {
   const { id } = useParams();
@@ -12,7 +13,6 @@ const HostVanDetails = () => {
       .then((data) => setVan(data.vans));
   }, [id]);
 
-  // console.log(van);
   return (
     <div>
       <Link
@@ -31,15 +31,24 @@ const HostVanDetails = () => {
 };
 
 const HostVan = ({ van }) => {
-  const { name, imageUrl } = van;
+  const { name, imageUrl, type, price } = van;
 
   return (
-    <div className="bg-white my-10">
-      <div>
-        <img src={imageUrl} className="w-40 h-40" alt="" />
-      </div>
-      <div>
-        <p>{name}</p>
+    <div className="bg-white my-10 rounded p-7">
+      <div className="flex gap-5 items-center">
+        <div>
+          <img src={imageUrl} className="w-40 h-40" alt="" />
+        </div>
+        <div className="flex flex-col gap-3">
+          <div>
+            <TypeButton type={type} className="py-1.5 px-4 rounded-md" />
+          </div>
+          <p className="font-bold text-3xl">{name}</p>
+          <p className="text-xl">
+            <span className="font-bold">${price}</span>
+            /day
+          </p>
+        </div>
       </div>
     </div>
   );

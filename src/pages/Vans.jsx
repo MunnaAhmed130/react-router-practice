@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import TypeButton from "../components/TypeButton";
 
 const Vans = () => {
   const [vans, setVans] = useState([]);
@@ -52,20 +53,14 @@ const Van = ({ van }) => {
       />
       <div className="flex justify-between pt-4">
         <h3 className="text-xl font-bold">{name}</h3>
+
         <div>
           <span className="text-xl font-bold">${price}</span>
           <span className="text-sm leading-3 block text-right">/day</span>
         </div>
       </div>
-      <button
-        className={`px-4 py-2 capitalize rounded text-[#ffead0]
-        ${type == "simple" && `bg-[#e17654]`}
-        ${type == "rugged" && `bg-[#115e59]`}
-        ${type == "luxury" && `bg-[#161616]`}
-        `}
-      >
-        {type}
-      </button>
+
+      <TypeButton type={type} className="px-4 py-1.5 rounded-md" />
     </Link>
   );
 };

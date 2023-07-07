@@ -8,15 +8,15 @@ const HostLayout = () => {
     // },
     {
       title: "Income",
-      path: "/host/income",
+      path: "income",
     },
     {
       title: "Vans",
-      path: "/host/vans",
+      path: "vans",
     },
     {
       title: "Reviews",
-      path: "/host/reviews",
+      path: "reviews",
     },
   ];
 
@@ -40,7 +40,7 @@ const HostLayout = () => {
 
           <NavLink
             end
-            to="/host"
+            to=""
             style={({ isActive }) => (isActive ? hostLayoutStyle : null)}
           >
             Dashboard
