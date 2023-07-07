@@ -12,3 +12,10 @@
 .host-nav a {
   @apply text-lg;
 }
+.info-container p {
+  @apply mb-5 last:mb-0;
+}
+
+.info-container span {
+  @apply font-bold;
+}

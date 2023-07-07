@@ -27,7 +27,7 @@ const HostVanDetails = () => {
       </Link>
 
       {van.length > 0 ? (
-        van.map((van) => <HostVan key={van.id} van={van} />)
+        van.map((van) => <HostVan key={van.id} van={van} setVan={setVan} />)
       ) : (
         <h3>Loading ...</h3>
       )}
@@ -35,10 +35,9 @@ const HostVanDetails = () => {
   );
 };
 
-const HostVan = ({ van }) => {
+const HostVan = ({ van, setVan }) => {
   const { name, imageUrl, type, price } = van;
 
-  const vansNavlist = "mr-7";
   return (
     <section className="bg-white my-10 rounded p-7">
       <div className="flex gap-5 items-center mb-7">
@@ -56,24 +55,32 @@ const HostVan = ({ van }) => {
           </p>
         </div>
       </div>
-      <div>
-        {vansNav.map((nav) => (
-          <NavLink
-            end
-            key={nav.title}
-            to={nav.path}
-            className={({ isActive }) =>
-              isActive
-                ? `font-bold underline underline-offset-4 decoration-black decoration-2 text-[#161616] ${vansNavlist}`
-                : `${vansNavlist}`
-            }
-          >
-            {nav.title}
-          </NavLink>
-        ))}
-      </div>
-      <Outlet />
+      <VanInfoNav />
+      {/* <Outlet context={{ van }} /> */}
+      <Outlet context={[van]} />
     </section>
+  );
+};
+
+const VanInfoNav = () => {
+  const vansNavlist = "mr-7";
+  return (
+    <nav className="mb-7">
+      {vansNav.map((nav) => (
+        <NavLink
+          end
+          key={nav.title}
+          to={nav.path}
+          className={({ isActive }) =>
+            isActive
+              ? `font-bold underline underline-offset-4 decoration-black decoration-2 text-[#161616] ${vansNavlist}`
+              : `${vansNavlist}`
+          }
+        >
+          {nav.title}
+        </NavLink>
+      ))}
+    </nav>
   );
 };
 

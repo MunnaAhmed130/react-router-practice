@@ -1,5 +1,12 @@
+import { useOutletContext } from "react-router-dom";
+
 const HostVanPricing = () => {
-  return <div>HostVanPricing</div>;
+  const [van] = useOutletContext();
+  return (
+    <p>
+      <span className="text-2xl font-medium">${van.price}</span>/day
+    </p>
+  );
 };
 
 export default HostVanPricing;
