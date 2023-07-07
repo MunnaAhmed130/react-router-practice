@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header className="h-24 px-16">
       <div className="flex justify-between max-w-7xl mx-auto h-full items-center ">
-        <Link to="/" className="font-black text-2xl text-black">
+        <Link to="." className="font-black text-2xl text-black">
           #VANLIFE
         </Link>
         <nav className="flex items-center">

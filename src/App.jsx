@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Vans from "./pages/Vans";
@@ -65,9 +65,18 @@ function App() {
 
             {/* index route below*/}
             <Route index element={<Dashboard />} />
+
             <Route path="income" element={<Income />} />
             <Route path="vans" element={<HostVans />} />
             <Route path="vans/:id" element={<HostVanDetails />} />
+
+            {/*
+            vans nested route
+            <Route path="vans" element={<Outlet />}>
+              <Route index element={<HostVans />} />
+              <Route path=":id" element={<HostVanDetails />} />
+            </Route> */}
+
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>

@@ -12,11 +12,15 @@ const HostVans = () => {
   return (
     <section>
       <h2 className="text-3xl font-bold py-10">Your listed vans</h2>
-      <div>
-        {vans.map((van) => (
-          <Van van={van} key={van.id} />
-        ))}
-      </div>
+      {vans.length > 0 ? (
+        <div>
+          {vans.map((van) => (
+            <Van van={van} key={van.id} />
+          ))}
+        </div>
+      ) : (
+        <h2>Loading...</h2>
+      )}
     </section>
   );
 };

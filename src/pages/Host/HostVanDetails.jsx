@@ -13,20 +13,25 @@ const HostVanDetails = () => {
       .then((data) => setVan(data.vans));
   }, [id]);
 
+  // console.log(van);
+
   return (
-    <div>
+    <section>
       <Link
-        to="/host/vans"
+        to=".."
+        relative="path"
         className="underline underline-offset-[3px] flex items-center font-medium text-[#201f1d] my-12"
       >
         <BiArrowBack className="inline-block mr-2 text-[#858585]" />
         Back to all vans
       </Link>
 
-      {van.map((van) => (
-        <HostVan key={van.id} van={van} />
-      ))}
-    </div>
+      {van.length > 0 ? (
+        van.map((van) => <HostVan key={van.id} van={van} />)
+      ) : (
+        <h3>Loading ...</h3>
+      )}
+    </section>
   );
 };
 

@@ -17,11 +17,12 @@ const VanDetail = () => {
       .then((data) => setVan(data.vans));
   }, [id]);
 
-  //   console.log(van);
+  // console.log(van);
   return (
     <section className="max-w-7xl mx-auto py-16 px-16">
       <Link
-        to="/vans"
+        to=".."
+        relative="path"
         className="underline underline-offset-[3px] flex items-center font-medium text-[#201f1d]"
       >
         <BiArrowBack className="inline-block mr-2 text-[#858585]" />
