@@ -1,25 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { hostNavlist } from "../assets/constant";
 
 const HostLayout = () => {
-  const hostNavlist = [
-    // {
-    //   title: "Dashboard",
-    //   path: "/host",
-    // },
-    {
-      title: "Income",
-      path: "income",
-    },
-    {
-      title: "Vans",
-      path: "vans",
-    },
-    {
-      title: "Reviews",
-      path: "reviews",
-    },
-  ];
-
   const hostLayoutStyle = {
     fontWeight: "bold",
     textDecorationLine: "underline",
@@ -31,13 +13,7 @@ const HostLayout = () => {
   return (
     <div className="py-8 px-16">
       <div className="max-w-7xl mx-auto ">
-        <nav className="mb-10 flex justify-between max-w-xl">
-          {/*
-         <Link to="/host">Dashbaord</Link>
-         <Link to="/host/income">Income</Link>
-        <Link to="/host/reviews">Reviews</Link> 
-      */}
-
+        <nav className="host-nav mb-10 flex justify-between max-w-xl">
           <NavLink
             end
             to="."

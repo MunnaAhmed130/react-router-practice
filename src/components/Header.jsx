@@ -1,21 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
+import { navlist } from "../assets/constant";
 
 const Header = () => {
-  const navlist = [
-    {
-      title: "Host",
-      path: "host",
-    },
-    {
-      title: "About",
-      path: "about",
-    },
-    {
-      title: "Vans",
-      path: "vans",
-    },
-  ];
-
   return (
     <header className="h-24 px-16">
       <div className="flex justify-between max-w-7xl mx-auto h-full items-center ">

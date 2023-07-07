@@ -7,3 +7,8 @@
 .about-section p {
   font-weight: 500;
 }
+
+/* host  */
+.host-nav a {
+  @apply text-lg;
+}
