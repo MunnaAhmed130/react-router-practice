@@ -29,7 +29,7 @@ const Van = ({ van }) => {
   const { id, name, price, imageUrl } = van;
 
   return (
-    <Link to={`${id}`}>
+    <Link to={id}>
       <div className="bg-white rounded p-5 mb-5 flex gap-5">
         <img src={imageUrl} className="w-20 rounded" alt="" />
         <div className=" flex flex-col justify-center">

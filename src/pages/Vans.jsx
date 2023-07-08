@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import TypeButton from "../components/TypeButton";
 
 const Vans = () => {
   const [vans, setVans] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const typeFilter = searchParams.get("type");
+  // const location = useLocation();
+  // console.log(location);
+  const displayedVan = typeFilter
+    ? vans.filter((van) => van.type === typeFilter)
+    : vans;
 
   useEffect(() => {
     fetch("/api/vans")
@@ -13,7 +20,17 @@ const Vans = () => {
 
   const filterbtn = ["simple", "luxury", "rugged"];
 
-  // console.log(vans);
+  function handleFilterChange(key, value) {
+    setSearchParams((prevParams) => {
+      if (value === null) {
+        prevParams.delete(key);
+      } else {
+        prevParams.set(key, value);
+      }
+      return prevParams;
+    });
+  }
+  // console.log(searchParams.toString());
   return (
     <section className=" py-16 px-16">
       <div className="max-w-7xl mx-auto ">
@@ -21,19 +38,29 @@ const Vans = () => {
         <div className="flex  gap-5 py-5 text-[#4d4d4d]">
           {filterbtn.map((btn) => (
             <button
+              // to={`?type=${btn}`}
+              // onClick={() => setSearchParams({ type: btn })}
+              onClick={() => handleFilterChange("type", btn)}
               key={btn}
-              className="bg-[#ffead0] capitalize rounded px-7 py-2"
+              className={`${
+                typeFilter === btn && `selected`
+              } van-type ${btn} bg-[#ffead0] capitalize rounded px-7 py-2`}
             >
               {btn}
             </button>
           ))}
-          <button className="underline underline-offset-4">
-            Clear filters
-          </button>
+          {typeFilter && (
+            <Link
+              to="."
+              className="underline underline-offset-4 flex items-center"
+            >
+              Clear filters
+            </Link>
+          )}
         </div>
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10 py-10">
-          {vans.map((van) => (
-            <Van key={van.name} van={van} />
+          {displayedVan.map((van) => (
+            <Van key={van.name} van={van} searchParams={searchParams} />
           ))}
         </div>
       </div>
@@ -41,10 +68,10 @@ const Vans = () => {
   );
 };
 
-const Van = ({ van }) => {
+const Van = ({ van, searchParams }) => {
   const { id, name, imageUrl, price, type } = van;
   return (
-    <Link to={`/vans/${id}`}>
+    <Link to={id} state={{ search: searchParams.toString() }}>
       {/* <Link to={`/vans/${id}`} state={{ fromVan: true }}> */}
       <img
         src={imageUrl}

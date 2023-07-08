@@ -2,6 +2,7 @@ import { useOutletContext } from "react-router-dom";
 
 const HostVanInfo = () => {
   // const { van } = useOutletContext();
+
   const [van] = useOutletContext();
   console.log(van);
   const { name, type, description } = van;
@@ -12,7 +13,7 @@ const HostVanInfo = () => {
         <span>Name:</span> &nbsp;
         {name}
       </p>
-      <p>
+      <p className="capitalize">
         <span>Category:</span>&nbsp;
         {type}
       </p>

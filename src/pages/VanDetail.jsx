@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import TypeButton from "../components/TypeButton";
 
 const VanDetail = () => {
   const { id } = useParams();
-
+  const location = useLocation();
+  const search = location.state?.search || "";
+  // const { state } = location;
+  // console.log(location, state);
   const [van, setVan] = useState([]);
   const { type, name, imageUrl, price, description } = van;
 
@@ -21,12 +24,12 @@ const VanDetail = () => {
   return (
     <section className="max-w-7xl mx-auto py-16 px-16">
       <Link
-        to=".."
+        to={`..?${search}`}
         relative="path"
         className="underline underline-offset-[3px] flex items-center font-medium text-[#201f1d]"
       >
         <BiArrowBack className="inline-block mr-2 text-[#858585]" />
-        Back to all vans
+        {search ? "Back to luxury vans" : ` Back to all vans`}
       </Link>
       {van ? (
         <div>
