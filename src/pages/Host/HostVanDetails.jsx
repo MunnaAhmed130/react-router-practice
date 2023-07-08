@@ -27,7 +27,7 @@ const HostVanDetails = () => {
       </Link>
 
       {van.length > 0 ? (
-        van.map((van) => <HostVan key={van.id} van={van} setVan={setVan} />)
+        van.map((van) => <HostVan key={van.id} van={van} />)
       ) : (
         <h3>Loading ...</h3>
       )}
@@ -35,7 +35,7 @@ const HostVanDetails = () => {
   );
 };
 
-const HostVan = ({ van, setVan }) => {
+const HostVan = ({ van }) => {
   const { name, imageUrl, type, price } = van;
 
   return (
@@ -56,7 +56,10 @@ const HostVan = ({ van, setVan }) => {
         </div>
       </div>
       <VanInfoNav />
-      {/* <Outlet context={{ van }} /> */}
+      {/*
+      you can send data as array or object
+       <Outlet context={{ van }} />
+        */}
       <Outlet context={[van]} />
     </section>
   );

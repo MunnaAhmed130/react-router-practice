@@ -34,4 +34,6 @@ const vansNav = [
   { title: "Photos", path: "photos" },
 ];
 
-export { navlist, hostNavlist, vansNav };
+const filterbtn = ["simple", "luxury", "rugged"];
+
+export { navlist, hostNavlist, vansNav, filterbtn };

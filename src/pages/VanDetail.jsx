@@ -6,14 +6,16 @@ import TypeButton from "../components/TypeButton";
 const VanDetail = () => {
   const { id } = useParams();
   const location = useLocation();
-  const search = location.state?.search || "";
-  // const { state } = location;
-  // console.log(location, state);
   const [van, setVan] = useState([]);
+
+  const { state } = location;
+  const search = state?.search || "";
+  const vanType = state?.type || "all";
+
+  console.log(vanType);
+
   const { type, name, imageUrl, price, description } = van;
 
-  // const location = useLocation();
-  // console.log(location);
   useEffect(() => {
     fetch(`/api/vans/${id}`)
       .then((res) => res.json())
@@ -26,10 +28,11 @@ const VanDetail = () => {
       <Link
         to={`..?${search}`}
         relative="path"
-        className="underline underline-offset-[3px] flex items-center font-medium text-[#201f1d]"
+        className="underline  underline-offset-[3px] inline font-medium text-[#201f1d]"
       >
         <BiArrowBack className="inline-block mr-2 text-[#858585]" />
-        {search ? "Back to luxury vans" : ` Back to all vans`}
+        {/* {location.state?.type ? `Back to ${type} vans` : ` Back to all vans`} */}
+        Back to {vanType} vans
       </Link>
       {van ? (
         <div>

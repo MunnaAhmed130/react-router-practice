@@ -1,10 +1,8 @@
 import { useOutletContext } from "react-router-dom";
 
 const HostVanInfo = () => {
-  // const { van } = useOutletContext();
-
   const [van] = useOutletContext();
-  console.log(van);
+  // console.log(van);
   const { name, type, description } = van;
 
   return (

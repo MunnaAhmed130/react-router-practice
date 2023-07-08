@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  // let catche = new Map();
-  // console.log(catche);
-
-  // let [urlSearchParams] = useSearchParams();
-  // console.log(urlSearchParams);
-
   return (
     <section className="bg-mountain bg-no-repeat bg-center bg-cover px-16">
       <div className="max-w-7xl mx-auto min-h-[calc(100vh_-_192px)]  flex flex-col justify-center py-32 gap-10">

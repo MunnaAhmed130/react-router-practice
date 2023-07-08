@@ -9,6 +9,7 @@ const HostVans = () => {
       .then((res) => res.json())
       .then((data) => setVans(data.vans));
   }, []);
+
   return (
     <section>
       <h2 className="text-3xl font-bold py-10">Your listed vans</h2>
