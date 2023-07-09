@@ -1,4 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Vans from "./pages/Vans";
@@ -14,6 +21,7 @@ import HostVanDetails from "./pages/Host/HostVanDetails";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanPricing from "./pages/Host/HostVanPricing";
 import HostVanInfo from "./pages/Host/HostVanInfo";
+import NotFound from "./pages/NotFound";
 
 // const Greeting = () => {
 //   return <h1>Hello to React router</h1>;
@@ -32,65 +40,94 @@ import HostVanInfo from "./pages/Host/HostVanInfo";
 //   );
 // };
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {/* nested route */}
-        <Route path="/" element={<Layout />}>
-          {/*
-          another way to nest route
-           <Route element={<Layout />}> 
-         <Route path="/" element={<Home />} /> 
-         */}
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+      <Route path="vans" element={<Vans />} />
+      <Route path="vans/:id" element={<VanDetail />} />
 
-          {/* index route below*/}
-          <Route index element={<Home />} />
-
-          <Route path="about" element={<About />} />
-          <Route path="vans" element={<Vans />} />
-          <Route path="vans/:id" element={<VanDetail />} />
-
-          {/*
-          nested route
-          <Route path="vans">
-            <Route index element={<Vans />} />
-            <Route path=":id" element={<VanDetail />} />
-          </Route> 
-          */}
-
-          {/* nested route */}
-          <Route path="host" element={<HostLayout />}>
-            {/*
-             this code works like index route
-             <Route path="" element={<Dashboard />} /> 
-             */}
-
-            {/* index route below*/}
-            <Route index element={<Dashboard />} />
-
-            <Route path="income" element={<Income />} />
-            <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVanDetails />}>
-              <Route index element={<HostVanInfo />} />
-              <Route path="pricing" element={<HostVanPricing />} />
-              <Route path="photos" element={<HostVanPhotos />} />
-            </Route>
-
-            {/*
-            vans nested route
-            <Route path="vans" element={<Outlet />}>
-              <Route index element={<HostVans />} />
-              <Route path=":id" element={<HostVanDetails />} />
-            </Route> */}
-
-            <Route path="reviews" element={<Reviews />} />
-          </Route>
+      <Route path="host" element={<HostLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="income" element={<Income />} />
+        <Route path="vans" element={<HostVans />} />
+        <Route path="vans/:id" element={<HostVanDetails />}>
+          <Route index element={<HostVanInfo />} />
+          <Route path="pricing" element={<HostVanPricing />} />
+          <Route path="photos" element={<HostVanPhotos />} />
         </Route>
-      </Routes>
-      {/* <Footer /> */}
-    </BrowserRouter>
-  );
+        <Route path="reviews" element={<Reviews />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  )
+);
+
+function App() {
+  return <RouterProvider router={router} />;
 }
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         {/* nested route */}
+//         <Route path="/" element={<Layout />}>
+//           {/*
+//           another way to nest route
+//            <Route element={<Layout />}>
+//          <Route path="/" element={<Home />} />
+//          */}
+
+//           {/* index route below*/}
+//           <Route index element={<Home />} />
+
+//           <Route path="about" element={<About />} />
+//           <Route path="vans" element={<Vans />} />
+//           <Route path="vans/:id" element={<VanDetail />} />
+
+//           {/*
+//           nested route
+//           <Route path="vans">
+//             <Route index element={<Vans />} />
+//             <Route path=":id" element={<VanDetail />} />
+//           </Route>
+//           */}
+
+//           {/* nested route */}
+//           <Route path="host" element={<HostLayout />}>
+//             {/*
+//              this code works like index route
+//              <Route path="" element={<Dashboard />} />
+//              */}
+
+//             {/* index route below*/}
+//             <Route index element={<Dashboard />} />
+
+//             <Route path="income" element={<Income />} />
+//             <Route path="vans" element={<HostVans />} />
+//             <Route path="vans/:id" element={<HostVanDetails />}>
+//               <Route index element={<HostVanInfo />} />
+//               <Route path="pricing" element={<HostVanPricing />} />
+//               <Route path="photos" element={<HostVanPhotos />} />
+//             </Route>
+
+//             {/*
+//             vans nested route
+//             <Route path="vans" element={<Outlet />}>
+//               <Route index element={<HostVans />} />
+//               <Route path=":id" element={<HostVanDetails />} />
+//             </Route> */}
+
+//             <Route path="reviews" element={<Reviews />} />
+//           </Route>
+//           <Route path="*" element={<NotFound />} />
+//         </Route>
+//       </Routes>
+//       {/* <Footer /> */}
+//     </BrowserRouter>
+//   );
+// }
 
 export default App;

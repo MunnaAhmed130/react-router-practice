@@ -1,4 +1,4 @@
-import { Model, createServer } from "miragejs";
+import { Model, Response, createServer } from "miragejs";
 
 createServer({
   // dynamic model
@@ -81,11 +81,13 @@ createServer({
   routes() {
     this.namespace = "api";
     this.logging = false;
+    // this.timing = 2000;
     // this.urlPrefix = "http://localhost:3000";
 
     // dynamic route handlers
     // The schema argument is how we access our new Movie model.
     this.get("/vans", (schema, request) => {
+      // return new Response(400, {}, { error: "Error fetching data" });
       return schema.vans.all();
     });
 

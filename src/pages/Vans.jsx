@@ -2,25 +2,48 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import TypeButton from "../components/TypeButton";
 import { filterbtn } from "../assets/constant";
+import { getVans } from "../api";
 
 const Vans = () => {
   const [vans, setVans] = useState([]);
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  console.log(error);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
 
-  const location = useLocation();
-  console.log(location);
+  // const location = useLocation();
+  // console.log(location);
 
   const displayedVan = typeFilter
     ? vans.filter((van) => van.type === typeFilter)
     : vans;
 
+  // getVans("/api/vans");
   useEffect(() => {
-    fetch("/api/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVans();
+        setVans(data);
+      } catch (err) {
+        console.log("there was an error");
+        console.log(err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
   }, []);
+
+  if (loading) {
+    return <h2 className="text-4xl font-bold mt-14">Laoding...</h2>;
+  }
+
+  if (error) {
+    return <h2 className="text-4xl font-bold mt-14">{error.message}</h2>;
+  }
 
   return (
     <section className=" py-16 px-16">
