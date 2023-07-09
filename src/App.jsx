@@ -1,15 +1,13 @@
 import {
-  BrowserRouter,
   Route,
   RouterProvider,
-  Routes,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Vans from "./pages/Vans";
-import VanDetail from "./pages/VanDetail";
+import Vans, { loader as vanLoader } from "./pages/Vans/Vans";
+import VanDetail from "./pages/Vans/VanDetail";
 import Layout from "./components/Layout";
 import "./App.css";
 import Dashboard from "./pages/Host/Dashboard";
@@ -22,6 +20,7 @@ import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanPricing from "./pages/Host/HostVanPricing";
 import HostVanInfo from "./pages/Host/HostVanInfo";
 import NotFound from "./pages/NotFound";
+import Error from "./components/Error";
 
 // const Greeting = () => {
 //   return <h1>Hello to React router</h1>;
@@ -40,12 +39,13 @@ import NotFound from "./pages/NotFound";
 //   );
 // };
 
+// transitional method
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} errorElement={<Error />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="vans" element={<Vans />} />
+      <Route path="vans" element={<Vans />} loader={vanLoader} />
       <Route path="vans/:id" element={<VanDetail />} />
 
       <Route path="host" element={<HostLayout />}>
@@ -68,6 +68,7 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
+// old method
 // function App() {
 //   return (
 //     <BrowserRouter>

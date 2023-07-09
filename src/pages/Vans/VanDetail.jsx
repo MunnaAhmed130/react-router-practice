@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import TypeButton from "../components/TypeButton";
+import TypeButton from "../../components/TypeButton";
 
 const VanDetail = () => {
   const { id } = useParams();

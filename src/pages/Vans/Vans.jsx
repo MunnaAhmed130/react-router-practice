@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
-import TypeButton from "../components/TypeButton";
-import { filterbtn } from "../assets/constant";
-import { getVans } from "../api";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import TypeButton from "../../components/TypeButton";
+import { filterbtn } from "../../assets/constant";
+import { getVans } from "../../api";
+
+export function loader() {
+  return getVans();
+}
 
 const Vans = () => {
-  const [vans, setVans] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  console.log(error);
+  // const [vans, setVans] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
 
+  const vans = useLoaderData();
+  // console.log(data);
   // const location = useLocation();
   // console.log(location);
 
@@ -20,30 +24,30 @@ const Vans = () => {
     : vans;
 
   // getVans("/api/vans");
-  useEffect(() => {
-    async function loadVans() {
-      setLoading(true);
-      try {
-        const data = await getVans();
-        setVans(data);
-      } catch (err) {
-        console.log("there was an error");
-        console.log(err);
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadVans();
-  }, []);
+  // useEffect(() => {
+  //   async function loadVans() {
+  //     setLoading(true);
+  //     try {
+  //       const data = await getVans();
+  //       setVans(data);
+  //     } catch (err) {
+  //       console.log("there was an error");
+  //       console.log(err);
+  //       setError(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   loadVans();
+  // }, []);
 
-  if (loading) {
-    return <h2 className="text-4xl font-bold mt-14">Laoding...</h2>;
-  }
+  // if (loading) {
+  //   return <h2 className="text-4xl font-bold mt-14">Laoding...</h2>;
+  // }
 
-  if (error) {
-    return <h2 className="text-4xl font-bold mt-14">{error.message}</h2>;
-  }
+  // if (error) {
+  //   return <h2 className="text-4xl font-bold mt-14">{error.message}</h2>;
+  // }
 
   return (
     <section className=" py-16 px-16">
