@@ -21,6 +21,7 @@ import HostVanPricing from "./pages/Host/HostVanPricing";
 import HostVanInfo from "./pages/Host/HostVanInfo";
 import NotFound from "./pages/NotFound";
 import Error from "./components/Error";
+import Login from "./pages/Login";
 
 // const Greeting = () => {
 //   return <h1>Hello to React router</h1>;
@@ -42,10 +43,16 @@ import Error from "./components/Error";
 // transitional method
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />} errorElement={<Error />}>
+    <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="vans" element={<Vans />} loader={vanLoader} />
+      <Route path="login" element={<Login />} />
+      <Route
+        path="vans"
+        element={<Vans />}
+        loader={vanLoader}
+        errorElement={<Error />}
+      />
       <Route path="vans/:id" element={<VanDetail />} />
 
       <Route path="host" element={<HostLayout />}>

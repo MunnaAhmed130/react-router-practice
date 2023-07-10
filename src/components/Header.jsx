@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { navlist } from "../assets/constant";
+import { loginLogo } from "../assets";
 
 const Header = () => {
   return (
@@ -22,6 +23,9 @@ const Header = () => {
               {nav.title}
             </NavLink>
           ))}
+          <Link to="login" className="inline-flex items-center">
+            <img src={loginLogo} className="w-5 h-5" alt="" />
+          </Link>
         </nav>
       </div>
     </header>
