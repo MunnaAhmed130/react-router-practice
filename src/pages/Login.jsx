@@ -1,6 +1,14 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+
+export const loginLoader = ({ request }) => {
+  const message = new URL(request.url).searchParams.get("message");
+  return message;
+};
 
 const Login = () => {
+  const message = useLoaderData();
+
   const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
@@ -17,6 +25,11 @@ const Login = () => {
   };
   return (
     <section className="flex flex-col items-center px-7 min-h-[60vh] justify-center">
+      {message && (
+        <h2 className="text-red-500 text-xl font-bold absolute top-[20%]">
+          {message}
+        </h2>
+      )}
       <h2 className="text-4xl font-bold mb-5">Sign in to your account</h2>
       <form
         className="login-form flex flex-col w-full max-w-[500px]"

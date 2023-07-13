@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLoaderData,
+  useParams,
+} from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import TypeButton from "../../components/TypeButton";
 import { vansNav } from "../../assets/constant";
+import { getHostVans } from "../../api";
+import { requireAuth } from "../../utils";
+
+export async function hostDetailsLoader({ params }) {
+  await requireAuth();
+  return getHostVans(params.id);
+}
 
 const HostVanDetails = () => {
-  const { id } = useParams();
-  const [van, setVan] = useState([]);
+  const van = useLoaderData();
+  // const { id } = useParams();
+  // const [van, setVan] = useState([]);
 
-  useEffect(() => {
-    fetch(`/api/host/vans/${id}`)
-      .then((res) => res.json())
-      .then((data) => setVan(data.vans));
-  }, [id]);
+  // useEffect(() => {
+  //   fetch(`/api/host/vans/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setVan(data.vans));
+  // }, [id]);
 
-  // console.log(van);
   return (
     <section>
       <Link

@@ -2,20 +2,21 @@ import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import TypeButton from "../../components/TypeButton";
 import { filterbtn } from "../../assets/constant";
 import { getVans } from "../../api";
+import { useEffect, useState } from "react";
 
-export function loader() {
-  return getVans();
+export async function loader() {
+  return await getVans();
 }
 
 const Vans = () => {
+  const vans = useLoaderData();
   // const [vans, setVans] = useState([]);
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
 
-  const vans = useLoaderData();
-  // console.log(data);
+  console.log(vans);
   // const location = useLocation();
   // console.log(location);
 
