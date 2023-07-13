@@ -21,6 +21,7 @@ const HostVanDetails = () => {
   const van = useLoaderData();
   // const { id } = useParams();
   // const [van, setVan] = useState([]);
+  console.log(van);
 
   // useEffect(() => {
   //   fetch(`/api/host/vans/${id}`)
@@ -38,12 +39,12 @@ const HostVanDetails = () => {
         <BiArrowBack className="inline-block mr-2 text-[#858585]" />
         Back to all vans
       </Link>
-
-      {van.length > 0 ? (
-        van.map((van) => <HostVan key={van.id} van={van} />)
-      ) : (
-        <h3>Loading ...</h3>
-      )}
+      <HostVan key={van.id} van={van} />
+      {/* // {van.length > 0 ? (
+      //   van.map((van) => <HostVan key={van.id} van={van} />)
+      // ) : (
+      //   <h3>Loading ...</h3>
+      // )} */}
     </section>
   );
 };

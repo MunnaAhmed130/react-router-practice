@@ -19,7 +19,7 @@ const VanDetail = () => {
   const search = state?.search || "";
   const vanType = state?.type || "all";
 
-  // console.log(vanType);
+  // console.log(van, vanType);
 
   // const { type, name, imageUrl, price, description } = van;
 
