@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { loginUser } from "../api";
 
 export const loginLoader = ({ request }) => {
   const message = new URL(request.url).searchParams.get("message");
@@ -8,21 +9,36 @@ export const loginLoader = ({ request }) => {
 
 const Login = () => {
   const message = useLoaderData();
-
+  const navigate = useNavigate();
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
   const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
+  console.log(error, status);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(loginFormData);
+    setStatus("submitting");
+    setError(null);
+
+    loginUser(loginFormData)
+      .then((data) => {
+        console.log(data);
+        navigate("/host", { replace: true });
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => setStatus("idle"));
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   return (
     <section className="flex flex-col items-center px-7 min-h-[60vh] justify-center">
       {message && (
@@ -33,12 +49,12 @@ const Login = () => {
       <h2 className="text-4xl font-bold mb-5">Sign in to your account</h2>
       <form
         className="login-form flex flex-col w-full max-w-[500px]"
-        onSubmit={handleSubmit}
+        onSubmit={(e) => handleSubmit(e)}
       >
         <input
           type="email"
           name="email"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           placeholder="Email address"
           value={loginFormData.email}
         />
@@ -46,12 +62,18 @@ const Login = () => {
         <input
           type="password"
           name="password"
-          onChange={handleChange}
+          // onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           placeholder="Password"
           value={loginFormData.password}
         />
-        <button className="bg-[#FF8C38] border-none rounded-md h-14 mt-6 text-white ">
-          Log in
+        {error && <h2>{error.message}</h2>}
+        <button
+          className="bg-[#FF8C38] border-none rounded-md h-14 mt-6 text-white"
+          disabled={status === "submitting" && true}
+          // onClick={() => setStatus("submitting")}
+        >
+          {status === "idle" ? "Log in" : "submitting..."}
         </button>
       </form>
     </section>

@@ -32,3 +32,26 @@ export async function getHostVans(id) {
   // console.log(data);
   return data.vans;
 }
+
+export async function loginUser(creds) {
+  const url = "http://localhost:3000/login";
+  // const url = "/api/login";
+
+  const res = await fetch(url, {
+    method: "post",
+    headers: { "Content-Type": "application/json" }, // without headers express req.body will get {}
+    body: JSON.stringify(creds),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw {
+      message: data.message,
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+
+  return data;
+}
