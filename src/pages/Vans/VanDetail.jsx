@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import TypeButton from "../../components/TypeButton";
 import { getVans } from "../../api";

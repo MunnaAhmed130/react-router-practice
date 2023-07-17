@@ -1,28 +1,31 @@
-import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import {
+  Await,
+  Link,
+  defer,
+  useLoaderData,
+  useSearchParams,
+} from "react-router-dom";
 import TypeButton from "../../components/TypeButton";
 import { filterbtn } from "../../assets/constant";
 import { getVans } from "../../api";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export async function loader() {
-  return await getVans();
+  //   const vans = getVans();
+  return defer({ vans: getVans() });
 }
 
 const Vans = () => {
-  const vans = useLoaderData();
+  const vansPromise = useLoaderData();
   // const [vans, setVans] = useState([]);
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
 
-  console.log(vans);
+  // console.log(vans);
   // const location = useLocation();
   // console.log(location);
-
-  const displayedVan = typeFilter
-    ? vans.filter((van) => van.type === typeFilter)
-    : vans;
 
   // getVans("/api/vans");
   // useEffect(() => {
@@ -58,16 +61,29 @@ const Vans = () => {
           setSearchParams={setSearchParams}
           typeFilter={typeFilter}
         />
-        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10 py-10">
-          {displayedVan.map((van) => (
-            <Van
-              key={van.name}
-              van={van}
-              searchParams={searchParams}
-              typeFilter={typeFilter}
-            />
-          ))}
-        </div>
+        <Suspense fallback={<h3>Loading...</h3>}>
+          <Await resolve={vansPromise.vans}>
+            {(vans) => {
+              console.log(vans);
+
+              const displayedVan = typeFilter
+                ? vans.filter((van) => van.type === typeFilter)
+                : vans;
+              return (
+                <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10 py-10">
+                  {displayedVan.map((van) => (
+                    <Van
+                      key={van.name}
+                      van={van}
+                      searchParams={searchParams}
+                      typeFilter={typeFilter}
+                    />
+                  ))}
+                </div>
+              );
+            }}
+          </Await>
+        </Suspense>
       </div>
     </section>
   );
