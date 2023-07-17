@@ -1,15 +1,17 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Await, Link, defer, useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../api";
 import { requireAuth } from "../../utils";
+import { Suspense } from "react";
 
 export async function hostLoader({ request }) {
   await requireAuth(request);
-  return getHostVans();
+  return defer({ vans: getHostVans() });
 }
 
 const HostVans = () => {
-  const vans = useLoaderData();
-  console.log(vans);
+  const vansPromise = useLoaderData();
+  // console.log(vansPromise);
+
   // const [vans, setVans] = useState([]);
   // useEffect(() => {
   //   fetch("/api/host/vans")
@@ -20,15 +22,28 @@ const HostVans = () => {
   return (
     <section>
       <h2 className="text-3xl font-bold py-10">Your listed vans</h2>
-      {/* {vans.length > 0 ? ( */}
-      <div>
-        {vans.map((van) => (
-          <Van van={van} key={van.id} />
-        ))}
-      </div>
-      {/* ) : (
+      {/* {vans.length > 0 ? (
+        <div>
+          {vans.map((van) => (
+            <Van van={van} key={van.id} />
+          ))}
+        </div>
+      ) : (
         <h2>Loading...</h2>
       )} */}
+      <Suspense fallback={<h3>loading...</h3>}>
+        <Await resolve={vansPromise.vans}>
+          {(vans) => {
+            return (
+              <div>
+                {vans.map((van) => (
+                  <Van van={van} key={van.id} />
+                ))}
+              </div>
+            );
+          }}
+        </Await>
+      </Suspense>
     </section>
   );
 };

@@ -1,16 +1,23 @@
 // import { useEffect, useState } from "react";
-import { Link, useLoaderData, useLocation } from "react-router-dom";
+import {
+  Await,
+  Link,
+  defer,
+  useLoaderData,
+  useLocation,
+} from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import TypeButton from "../../components/TypeButton";
 import { getVans } from "../../api";
+import { Suspense } from "react";
 
 export function loader({ params }) {
   //   console.log(params.id);
-  return getVans(params.id);
+  return defer({ van: getVans(params.id) });
 }
 
 const VanDetail = () => {
-  const van = useLoaderData();
+  const vanPromise = useLoaderData();
   // const { id } = useParams();
   const location = useLocation();
   // const [van, setVan] = useState([]);
@@ -20,16 +27,14 @@ const VanDetail = () => {
   const vanType = state?.type || "all";
 
   // console.log(van, vanType);
-
-  // const { type, name, imageUrl, price, description } = van;
-
+  // const { type, name, imageUrl, price, description } = van
   // useEffect(() => {
   //   fetch(`/api/vans/${id}`)
   //     .then((res) => res.json())
   //     .then((data) => setVan(data.vans));
   // }, [id]);
-
   // console.log(van);
+
   return (
     <section className="max-w-7xl mx-auto py-16 px-16">
       <Link
@@ -41,7 +46,14 @@ const VanDetail = () => {
         {/* {location.state?.type ? `Back to ${type} vans` : ` Back to all vans`} */}
         Back to {vanType} vans
       </Link>
-      {van ? <SingleVan van={van} /> : <h2>Loading</h2>}
+      {/* {van ? <SingleVan van={van} /> : <h2>Loading</h2>} */}
+      <Suspense fallback={<h2>Loading ....</h2>}>
+        <Await resolve={vanPromise.van}>
+          {(van) => {
+            return <SingleVan van={van} />;
+          }}
+        </Await>
+      </Suspense>
     </section>
   );
 };

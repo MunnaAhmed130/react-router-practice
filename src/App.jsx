@@ -46,8 +46,6 @@ import { requireAuth } from "./utils";
 //   );
 // };
 
-localStorage.setItem("loggedin", false);
-
 // transitional method
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -68,13 +66,14 @@ const router = createBrowserRouter(
         //   const vans = getVans();
         //   return vans;
         // }}
-        // errorElement={<Error />}
+        errorElement={<Error />}
       />
 
       <Route
         path="vans/:id"
         element={<VanDetail />}
         loader={vanDetailsLoader}
+        errorElement={<Error />}
       />
 
       <Route path="host" element={<HostLayout />}>
@@ -88,11 +87,17 @@ const router = createBrowserRouter(
           element={<Income />}
           loader={async ({ request }) => await requireAuth(request)}
         />
-        <Route path="vans" element={<HostVans />} loader={hostLoader} />
+        <Route
+          path="vans"
+          element={<HostVans />}
+          loader={hostLoader}
+          errorElement={<Error />}
+        />
         <Route
           path="vans/:id"
           element={<HostVanDetails />}
           loader={hostDetailsLoader}
+          errorElement={<Error />}
         >
           <Route
             index

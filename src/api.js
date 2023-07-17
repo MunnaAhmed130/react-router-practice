@@ -1,3 +1,23 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCYzphNKepHBp39-askfXhB6FI0jWYSTfU",
+  authDomain: "vanlife-693dd.firebaseapp.com",
+  projectId: "vanlife-693dd",
+  storageBucket: "vanlife-693dd.appspot.com",
+  messagingSenderId: "382983635041",
+  appId: "1:382983635041:web:b71b0413435a96cd0a2a20",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 export async function getVans(id) {
   // const url = id ? `/api/vans/${id}` : "/api/vans";
   const url = id
@@ -13,6 +33,11 @@ export async function getVans(id) {
   }
   const data = await res.json();
   return data.vans;
+  // throw {
+  //   message: "Error fetching data",
+  //   status: 400,
+  //   statusText: "Bad Request",
+  // };
 }
 
 export async function getHostVans(id) {

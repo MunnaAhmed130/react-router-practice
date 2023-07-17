@@ -64,7 +64,7 @@ const Vans = () => {
         <Suspense fallback={<h3>Loading...</h3>}>
           <Await resolve={vansPromise.vans}>
             {(vans) => {
-              console.log(vans);
+              // console.log(vans);
 
               const displayedVan = typeFilter
                 ? vans.filter((van) => van.type === typeFilter)

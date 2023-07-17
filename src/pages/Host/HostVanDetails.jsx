@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import {
+  Await,
   Link,
   NavLink,
   Outlet,
+  defer,
   useLoaderData,
   useParams,
 } from "react-router-dom";
@@ -15,14 +17,15 @@ import { requireAuth } from "../../utils";
 export async function hostDetailsLoader({ params, request }) {
   // console.log(request, params);
   await requireAuth(request);
-  return getHostVans(params.id);
+  return defer({ van: getHostVans(params.id) });
 }
 
 const HostVanDetails = () => {
-  const van = useLoaderData();
+  const vanPromise = useLoaderData();
+
   // const { id } = useParams();
   // const [van, setVan] = useState([]);
-  console.log(van);
+  // console.log(van);
 
   // useEffect(() => {
   //   fetch(`/api/host/vans/${id}`)
@@ -40,7 +43,13 @@ const HostVanDetails = () => {
         <BiArrowBack className="inline-block mr-2 text-[#858585]" />
         Back to all vans
       </Link>
-      <HostVan key={van.id} van={van} />
+      <Suspense fallback={<h3>Loading ...</h3>}>
+        <Await resolve={vanPromise.van}>
+          {(van) => {
+            return <HostVan key={van.id} van={van} />;
+          }}
+        </Await>
+      </Suspense>
       {/* // {van.length > 0 ? (
       //   van.map((van) => <HostVan key={van.id} van={van} />)
       // ) : (
