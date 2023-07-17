@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
   Await,
   Link,
@@ -8,7 +9,6 @@ import {
 import TypeButton from "../../components/TypeButton";
 import { filterbtn } from "../../assets/constant";
 import { getVans } from "../../api";
-import { Suspense, useEffect, useState } from "react";
 
 export async function loader() {
   //   const vans = getVans();

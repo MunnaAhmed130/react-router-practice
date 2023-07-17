@@ -7,7 +7,6 @@ import {
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Vans, { loader as vanLoader } from "./pages/Vans/Vans";
-// import Vans from "./pages/Vans/Vans";
 import VanDetail, { loader as vanDetailsLoader } from "./pages/Vans/VanDetail";
 import Layout from "./components/Layout";
 import "./App.css";
@@ -24,10 +23,6 @@ import NotFound from "./pages/NotFound";
 import Error from "./components/Error";
 import Login, { loginAction, loginLoader } from "./pages/Login";
 import { requireAuth } from "./utils";
-// import { getHostVans } from "./api";
-// import { getVans } from "./api";
-// import { Vans, loader as vanLoader } from "./pages/Vans/Vans";
-// import { vanLoader } from "./loaders";
 
 // const Greeting = () => {
 //   return <h1>Hello to React router</h1>;

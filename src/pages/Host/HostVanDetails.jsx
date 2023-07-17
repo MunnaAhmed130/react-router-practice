@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import {
   Await,
   Link,
@@ -6,7 +6,6 @@ import {
   Outlet,
   defer,
   useLoaderData,
-  useParams,
 } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import TypeButton from "../../components/TypeButton";
