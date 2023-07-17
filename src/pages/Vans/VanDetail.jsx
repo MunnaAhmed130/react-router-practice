@@ -7,16 +7,18 @@ import {
 } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import TypeButton from "../../components/TypeButton";
-import { getVans } from "../../api";
+import { getVan, getVans } from "../../api";
 import { Suspense } from "react";
 
 export function loader({ params }) {
   //   console.log(params.id);
-  return defer({ van: getVans(params.id) });
+  // return defer({ van: getVans(params.id) });
+  return defer({ van: getVan(params.id) });
 }
 
 const VanDetail = () => {
   const vanPromise = useLoaderData();
+  // console.log(vanPromise);
   // const { id } = useParams();
   const location = useLocation();
   // const [van, setVan] = useState([]);
@@ -49,6 +51,7 @@ const VanDetail = () => {
       <Suspense fallback={<h2>Loading ....</h2>}>
         <Await resolve={vanPromise.van}>
           {(van) => {
+            console.log(van);
             return <SingleVan van={van} />;
           }}
         </Await>

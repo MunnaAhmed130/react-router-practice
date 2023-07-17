@@ -10,13 +10,13 @@ import {
 import { BiArrowBack } from "react-icons/bi";
 import TypeButton from "../../components/TypeButton";
 import { vansNav } from "../../assets/constant";
-import { getHostVans } from "../../api";
+import { getHostVan, getHostVans } from "../../api";
 import { requireAuth } from "../../utils";
 
 export async function hostDetailsLoader({ params, request }) {
   // console.log(request, params);
   await requireAuth(request);
-  return defer({ van: getHostVans(params.id) });
+  return defer({ van: getHostVan(params.id) });
 }
 
 const HostVanDetails = () => {
